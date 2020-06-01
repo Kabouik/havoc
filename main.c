@@ -585,8 +585,8 @@ static void blank(uint32_t *dst, int w, uf8 br, uf8 bg, uf8 bb, uf8 ba)
 	b = join(ba, mul(br, ba), mul(bg, ba), mul(bb, ba));
 	w *= term.cwidth;
 
-	while (h--) {
-		for (i = 0; i < w; ++i)
+	while (w--) {
+		for (i = 0; i < h; ++i)
 			dst[i] = b;
 		dst += term.width;
 	}
@@ -605,9 +605,9 @@ static void print(uint32_t *dst, int w,
 	br = mul(br, ba);
 	bg = mul(bg, ba);
 	bb = mul(bb, ba);
-	while (h--) {
-		for (i = 0; i < w; ++i) {
-			uf8 fa = glyph[i];
+	while (w--) {
+		for (i = 0; i < h; ++i) {
+			uf8 fa = glyph[(h - (i + 1)) * term.cwidth];
 			if (fa == 0) {
 				dst[i] = join(ba, br, bg, bb);
 			} else if (fa == 0xff) {
@@ -621,7 +621,7 @@ static void print(uint32_t *dst, int w,
 			}
 		}
 
-		glyph += w;
+		glyph += 1;
 		dst += term.width;
 	}
 }
@@ -638,7 +638,7 @@ static int draw_cell(struct tsm_screen *tsm, uint32_t id, const uint32_t *ch,
 		return 0;
 
 	dst += term.margin.top * term.width + term.margin.left;
-	dst = &dst[y * term.cheight * term.width + x * term.cwidth];
+	dst = &dst[(term.row - (y + 1)) * term.cheight + x * term.cwidth * term.width];
 
 	if (len == 0) {
 		if (a->inverse)
@@ -672,8 +672,8 @@ static void draw_margin(struct buffer *buffer)
 	uint8_t a = term.cfg.opacity;
 	uint8_t *rgb = term.cfg.colors[TSM_COLOR_BACKGROUND];
 	uint32_t c = join(a, mul(rgb[0], a), mul(rgb[1], a), mul(rgb[2], a));
-	int inw = term.col * term.cwidth;
-	int inh = term.row * term.cheight;
+	int inw = term.row * term.cheight;
+	int inh = term.col * term.cwidth;
 	int i, j;
 
 	for (i = 0; i < term.width * term.margin.top; ++i)
@@ -1389,8 +1389,8 @@ static void configure(void *data, struct wl_shell_surface *surf,
 	term.confwidth = width;
 	term.confheight = height;
 
-	int col = term.confwidth / term.cwidth;
-	int row = term.confheight / term.cheight;
+	int col = term.confheight / term.cwidth;
+	int row = term.confwidth / term.cheight;
 	struct winsize ws = {
 		row, col, 0, 0
 	};
@@ -1406,13 +1406,13 @@ static void configure(void *data, struct wl_shell_surface *surf,
 	if (term.cfg.margin) {
 		term.width = term.confwidth;
 		term.height = term.confheight;
-		term.margin.left = (term.width - col * term.cwidth) / 2;
-		term.margin.top = (term.height - row * term.cheight) / 2;
+		term.margin.left = (term.width - row * term.cheight) / 2;
+		term.margin.top = (term.height - col * term.cwidth) / 2;
 		term.need_redraw = true;
 		term.resize = 2;
 	} else {
-		term.width = col * term.cwidth;
-		term.height = row * term.cheight;
+		term.width = row * term.cheight;
+		term.height = col * term.cwidth;
 	}
 
 	if (term.col == col && term.row == row)
