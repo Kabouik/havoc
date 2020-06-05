@@ -9,8 +9,8 @@ CFLAGS ?= -Wall -Wextra -Wno-unused-parameter -Wno-parentheses
 CFLAGS += -DVERSION=\"$(VERSION)\"
 
 LIBS=-lrt -lm -lutil -lwayland-client -lwayland-cursor -lxkbcommon -Ltsm -lhtsm
-OBJ=surface-extension.o gtk-primary-selection.o glyph.o main.o
-GEN=surface-extension.c surface-extension.h gtk-primary-selection.c gtk-primary-selection.h
+OBJ=touch-extension.o surface-extension.o gtk-primary-selection.o glyph.o main.o
+GEN=touch-extension.c touch-extension.h surface-extension.c surface-extension.h gtk-primary-selection.c gtk-primary-selection.h
 
 havoc: tsm $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $(OBJ) $(LIBS)
