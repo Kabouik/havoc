@@ -201,6 +201,7 @@ void tsm_screen_erase_screen(struct tsm_screen *con, bool protect);
 
 void tsm_screen_selection_reset(struct tsm_screen *con);
 void tsm_screen_selection_start(struct tsm_screen *con, int posx, int posy);
+void tsm_screen_selection_anchor(struct tsm_screen *con, int posx, int posy);
 void tsm_screen_selection_target(struct tsm_screen *con, int posx, int posy);
 int tsm_screen_selection_copy(struct tsm_screen *con, char **out);
 

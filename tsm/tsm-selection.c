@@ -104,6 +104,16 @@ void tsm_screen_selection_start(struct tsm_screen *con, int posx, int posy)
 }
 
 SHL_EXPORT
+void tsm_screen_selection_anchor(struct tsm_screen *con, int posx, int posy)
+{
+	screen_inc_age(con);
+	/* TODO: more sophisticated ageing */
+	con->age = con->age_cnt;
+
+	selection_set(con, &con->sel_start, posx, posy);
+}
+
+SHL_EXPORT
 void tsm_screen_selection_target(struct tsm_screen *con, int posx, int posy)
 {
 	screen_inc_age(con);
