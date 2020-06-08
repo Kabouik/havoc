@@ -1,5 +1,5 @@
 Name:          havoc
-Version:       85fdde7
+Version:       2020-06-08
 Release:       1
 Summary:       A minimal terminal emulator for Wayland on Linux
 Group:         System
@@ -34,7 +34,7 @@ LICENSE
 %{_bindir}/havoc
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/86x86/apps/havoc.png
-%config /home/nemo/.config/havoc.cfg
+%config(noreplace) /home/nemo/.config/havoc.cfg
 
 %prep
 setup -q -n %{name}-%{version}
@@ -45,15 +45,15 @@ make CFLAGS="-O2 -DNDEBUG"
 %install
 rm -rf %{buildroot}
 make PREFIX=/usr DESTDIR=%{?buildroot} install
-cp %{?buildroot}/havoc.desktop %{_datadir}/applications/havoc.destkop
-cp %{?buildroot}/icons/havoc.png %{_datadir}/icons/hicolor/86x86/apps/havoc.png
+cp havoc.desktop %{_datadir}/applications/havoc.destkop
+cp icon/havoc.png %{_datadir}/icons/hicolor/86x86/apps/havoc.png
+cp havoc.cfg /home/nemo/.config/havoc.cfg
 
 %post
 # Bundle a default config file for easier customization
-cp %{?buildroot}/havoc.cfg /home/nemo/.config/havoc.cfg
 chmod 644 /home/nemo/.config/havoc.cfg
 chown nemo:nemo /home/nemo/.config/havoc.cfg
 
 %changelog
-* Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 85fdde7
-- First SFOS package based on the 85fdde7 version.
+* Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 2020-06-08
+- First SFOS package based on the 2020-06-08 version.
