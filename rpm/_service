@@ -1,0 +1,13 @@
+<services>
+  <service name="webhook">
+  <param name="repourl">https://github.com/Kabouik/havoc.git</param>
+  <param name="branch">sailfishos</param>
+  </service>
+<service name="tar_git">
+  <param name="url">https://github.com/Kabouik/havoc.git</param>
+  <param name="branch">sailfishos</param>
+  <param name="revision">85fdde75d98d4468dceabeb81253b834c6390a82</param>
+  <param name="token"/>
+  <param name="debian">N</param>
+  <param name="dumb">N</param>
+</service></services>
