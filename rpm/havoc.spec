@@ -8,7 +8,6 @@ Distribution:  Sailfish OS
 Packager:      Kabouik <matf[redactedforbots]disr.it>
 Source0:       %{name}-%{version}.tar.gz
 URL:           https://github.com/kabouik/havoc
-
 License:       MIT
 
 %description
@@ -32,25 +31,29 @@ LICENSE
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/*
+%{_bindir}/havoc
 %{_datadir}/applications/*.desktop
+%{_datadir}/icons/hicolor/86x86/apps/havoc.png
+%config /home/nemo/.config/havoc.cfg
+
+%prep
+setup -q -n %{name}-%{version}
 
 %build
 make CFLAGS="-O2 -DNDEBUG"
 
 %install
+rm -rf %{buildroot}
 make PREFIX=/usr DESTDIR=%{?buildroot} install
-
-%config
-/home/nemo/.config/havoc.cfg
+cp %{?buildroot}/havoc.desktop %{_datadir}/applications/havoc.destkop
+cp %{?buildroot}/icons/havoc.png %{_datadir}/icons/hicolor/86x86/apps/havoc.png
 
 %post
-# Change permissions on the config file
-chmod -R 755 /home/nemo/.config/havoc.cfg
-chown -R nemo:nemo /home/nemo/.config/havoc.cfg
-
-%postun
+# Bundle a default config file for easier customization
+cp %{?buildroot}/havoc.cfg /home/nemo/.config/havoc.cfg
+chmod 644 /home/nemo/.config/havoc.cfg
+chown nemo:nemo /home/nemo/.config/havoc.cfg
 
 %changelog
-* Sat Un 06 2020 Kabouik <matf[redactedforbots]disr.it> 85fdde7
+* Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 85fdde7
 - First SFOS package based on the 85fdde7 version.
