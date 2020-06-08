@@ -30,11 +30,11 @@ I am not the developer of Havoc, I just packaged it for SFOS. Havoc is being act
 LICENSE
 
 %files
-%defattr(-,root,root,-)
+%defattr(-,root,root) 
 %{_bindir}/havoc
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/hicolor/86x86/apps/havoc.png
-%config(noreplace) /home/nemo/.config/havoc.cfg
+%attr(0644, root, root) %{_datadir}/applications/havoc.desktop
+%attr(0644, root, root) %{_datadir}/icons/hicolor/86x86/apps/havoc.png
+%config(noreplace) %attr(0644, nemo, nemo) /home/nemo/.config/havoc.cfg
 
 %prep
 setup -q -n %{name}-%{version}
@@ -44,15 +44,10 @@ make CFLAGS="-O2 -DNDEBUG"
 
 %install
 rm -rf %{buildroot}
-make PREFIX=/usr DESTDIR=%{?buildroot} install
-cp havoc.desktop %{_datadir}/applications/havoc.destkop
-cp icon/havoc.png %{_datadir}/icons/hicolor/86x86/apps/havoc.png
-cp havoc.cfg /home/nemo/.config/havoc.cfg
-
-%post
-# Bundle a default config file for easier customization
-chmod 644 /home/nemo/.config/havoc.cfg
-chown nemo:nemo /home/nemo/.config/havoc.cfg
+make PREFIX=/usr DESTDIR=%{buildroot} install
+cp havoc.desktop %{buildroot}/usr/share/applications/havoc.destkop
+cp icon/havoc.png %{buildroot}/usr/share/icons/hicolor/86x86/apps/havoc.png
+cp havoc.cfg %{buildroot}/home/nemo/.config/havoc.cfg
 
 %changelog
 * Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 2020-06-08
