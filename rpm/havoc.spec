@@ -50,6 +50,7 @@ rm -rf %{buildroot}
 make PREFIX=/usr DESTDIR=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/applications/
 mkdir -p %{buildroot}/usr/share/icons/hicolor/86x86/apps/
+mkdir -p %{buildroot}/home/nemo.config/
 cp havoc.desktop %{buildroot}/usr/share/applications/havoc.destkop
 cp icon/havoc.png %{buildroot}/usr/share/icons/hicolor/86x86/apps/havoc.png
 cp havoc.cfg %{buildroot}/home/nemo/.config/havoc.cfg
