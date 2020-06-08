@@ -9,6 +9,8 @@ Packager:      Kabouik <matf[redactedforbots]disr.it>
 Source0:       %{name}-%{version}.tar.gz
 URL:           https://github.com/kabouik/havoc
 License:       MIT
+BuildRequires: libxkbcommon-devel
+BuildRequires: wayland-protocols-devel
 
 %description
 Havoc is a minimal but modern terminal emulator for Wayland. It supports everything you would expect from a terminal emulator on a PC, including 24bit colours and TUI features that Fingerterm and, to a lower extent, Toeterm, cannot handle. Havoc being developed for PC originally, it is meant to be used in landscape with a hardware keyboard.
