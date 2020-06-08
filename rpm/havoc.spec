@@ -37,7 +37,7 @@ LICENSE
 %config(noreplace) %attr(0644, nemo, nemo) /home/nemo/.config/havoc.cfg
 
 %prep
-setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}
 
 %build
 make CFLAGS="-O2 -DNDEBUG"
