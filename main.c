@@ -154,8 +154,8 @@ static struct {
 	.cfg.scrollback = 0,
 	.cfg.margin = true,
 	.cfg.opacity = 0xff,
-	.cfg.font_size = 18,
-	.cfg.font_path = 30,
+	.cfg.font_size = 30,
+	.cfg.font_path = 18,
 	.cfg.colors = {
 		[TSM_COLOR_BLACK]         = {   0,   0,   0 },
 		[TSM_COLOR_RED]           = { 205,   0,   0 },
