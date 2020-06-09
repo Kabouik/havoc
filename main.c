@@ -1955,7 +1955,7 @@ static void read_config(void)
 static void usage(void)
 {
 	printf("usage: havoc [option...] [program [args...]]\n\n"
-	       "  -c <file>  Specify configuration file.
+	       "  -c <file>  Specify configuration file."
 			     " Use empty string for defaults.\n"
 	             "             See https://github.com/Kabouik/havoc/blob/sailfishos/havoc.cfg"
 	             " for possible options.\n"
