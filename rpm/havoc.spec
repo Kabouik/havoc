@@ -34,7 +34,6 @@ I am not the developer of Havoc, I just packaged it for SFOS. Havoc is being act
 %{_bindir}/havoc
 %attr(0644, root, root) %{_datadir}/applications/havoc.desktop
 %attr(0644, root, root) %{_datadir}/icons/hicolor/86x86/apps/havoc.png
-%config(noreplace) %attr(0644, nemo, nemo) /home/nemo/.config/havoc.cfg
 %license LICENSE
 
 %prep
@@ -48,10 +47,8 @@ rm -rf %{buildroot}
 make PREFIX=/usr DESTDIR=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/applications/
 mkdir -p %{buildroot}/usr/share/icons/hicolor/86x86/apps/
-mkdir -p %{buildroot}/home/nemo/.config/
 cp havoc.desktop %{buildroot}/usr/share/applications/havoc.desktop
 cp icon/havoc.png %{buildroot}/usr/share/icons/hicolor/86x86/apps/havoc.png
-cp havoc.cfg %{buildroot}/home/nemo/.config/havoc.cfg
 
 %changelog
 * Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 2020-06-08
