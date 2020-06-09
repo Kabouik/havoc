@@ -163,10 +163,10 @@ static struct {
 	.cfg.col = 80,
 	.cfg.row = 24,
 	.cfg.scrollback = 0,
-	.cfg.margin = false,
+	.cfg.margin = true,
 	.cfg.opacity = 0xff,
 	.cfg.font_size = 18,
-	.cfg.font_path = "",
+	.cfg.font_path = 30,
 	.cfg.colors = {
 		[TSM_COLOR_BLACK]         = {   0,   0,   0 },
 		[TSM_COLOR_RED]           = { 205,   0,   0 },
@@ -1955,8 +1955,10 @@ static void read_config(void)
 static void usage(void)
 {
 	printf("usage: havoc [option...] [program [args...]]\n\n"
-	       "  -c <file>  Specify configuration file."
+	       "  -c <file>  Specify configuration file.
 			     " Use empty string for defaults.\n"
+	             "             See https://github.com/Kabouik/havoc/blob/sailfishos/havoc.cfg"
+	             " for possible options.\n"
 	       "  -l         Keep window open after the child process exits.\n"
 	       "  -s <name>  Wayland display server to connect to.\n"
 	       "  -i <id>    Wayland app ID to use instead of \"havoc\".\n"
