@@ -1,4 +1,4 @@
-[<35;52;10Name:          havoc
+M[<35;52;10Name:          havoc
 Version:       2020-06-08
 Release:       1
 Summary:       A minimal terminal emulator for Wayland on Linux
@@ -29,14 +29,13 @@ You can still use Havoc with no hardware keyboard, using qCommand, any other ter
 # Disclaimer
 I am not the developer of Havoc, I just packaged it for SFOS. Havoc is being actively developed by Murray Calavera (ii8) at https://github.com/ii8/havoc/.
 
-%license LICENSE
-
 %files
 %defattr(-,root,root) 
 %{_bindir}/havoc
 %attr(0644, root, root) %{_datadir}/applications/havoc.desktop
 %attr(0644, root, root) %{_datadir}/icons/hicolor/86x86/apps/havoc.png
 %config(noreplace) %attr(0644, nemo, nemo) /home/nemo/.config/havoc.cfg
+%license LICENSE
 
 %prep
 %setup -q -n %{name}-%{version}
