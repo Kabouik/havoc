@@ -1,4 +1,4 @@
-M[<35;52;10Name:          havoc
+Name:          havoc
 Version:       2020-06-08
 Release:       1
 Summary:       A minimal terminal emulator for Wayland on Linux
@@ -37,7 +37,7 @@ I am not the developer of Havoc, I just packaged it for SFOS. Havoc is being act
 %license LICENSE
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 make CFLAGS="-O2 -DNDEBUG"
