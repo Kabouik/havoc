@@ -162,7 +162,7 @@ static struct {
 	.cfg.shell = "/bin/sh",
 	.cfg.col = 80,
 	.cfg.row = 24,
-	.cfg.scrollback = 0,
+	.cfg.scrollback = 1000,
 	.cfg.margin = true,
 	.cfg.opacity = 0xff,
 	.cfg.font_size = 30,
