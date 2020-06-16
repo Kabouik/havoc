@@ -1,5 +1,5 @@
 Name:          havoc
-Version:       2020-06-09
+Version:       2020-06-16
 Release:       1
 Summary:       A minimal terminal emulator for Wayland on Linux
 Group:         System
@@ -51,5 +51,8 @@ cp havoc.desktop %{buildroot}/usr/share/applications/havoc.desktop
 cp icon/havoc.png %{buildroot}/usr/share/icons/hicolor/86x86/apps/havoc.png
 
 %changelog
+* Tue Jun 16 2020 Kabouik <matf[redactedforbots]disr.it> 2020-06-16
+- Fix default scrollback value.
+
 * Mon Jun 08 2020 Kabouik <matf[redactedforbots]disr.it> 2020-06-09
 - First SFOS package based on the 2020-06-09 version.
